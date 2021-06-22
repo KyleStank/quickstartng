@@ -1,7 +1,121 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "quickstartng": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/quickstartng",
+      "sourceRoot": "projects/quickstartng/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "deleteOutputPath": true,
+            "outputPath": "dist/quickstartng",
+            "index": "projects/quickstartng/src/index.html",
+            "main": "projects/quickstartng/src/main.ts",
+            "polyfills": "projects/quickstartng/src/polyfills.ts",
+            "tsConfig": "projects/quickstartng/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/quickstartng/src/favicon.ico",
+              "projects/quickstartng/src/assets"
+            ],
+            "styles": [
+              "projects/quickstartng/src/styles/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/quickstartng/src/environments/environment.ts",
+                  "with": "projects/quickstartng/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/quickstartng/src/environments/environment.ts",
+                  "with": "projects/quickstartng/src/environments/environment.dev.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "quickstartng:build:production"
+            },
+            "development": {
+              "browserTarget": "quickstartng:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "quickstartng:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/quickstartng/src/test.ts",
+            "polyfills": "projects/quickstartng/src/polyfills.ts",
+            "tsConfig": "projects/quickstartng/tsconfig.spec.json",
+            "karmaConfig": "projects/quickstartng/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/quickstartng/src/favicon.ico",
+              "projects/quickstartng/src/assets"
+            ],
+            "styles": [
+              "projects/quickstartng/src/styles/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "quickstartng"
 }
