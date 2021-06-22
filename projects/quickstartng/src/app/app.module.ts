@@ -1,18 +1,23 @@
-import { NgModule } from '@angular/core';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
+
+const dynamicProviders: Provider[] = [];
+if (environment.local) {
+  dynamicProviders.push({ provide: LocationStrategy, useClass: HashLocationStrategy });
+}
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserModule
   ],
-  providers: [],
+  declarations: [AppComponent],
+  providers: [...dynamicProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
