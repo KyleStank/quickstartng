@@ -7,6 +7,10 @@
       "core": [
         "dist/core/core",
         "dist/core"
+      ],
+      "shared": [
+        "dist/shared/shared",
+        "dist/shared"
       ]
     },
     "outDir": "./dist/out-tsc",
