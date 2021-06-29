@@ -3,12 +3,10 @@ import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FootersModule } from './features/footers';
-import { HeadersModule } from './features/headers';
-import { LayoutsModule } from './features/layouts';
+import { environment } from '@app/environments';
+import { FootersModule, HeadersModule, LayoutsModule } from '@app/features';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { environment } from '../environments/environment';
 
 const dynamicProviders: Provider[] = [];
 if (environment.local) {
