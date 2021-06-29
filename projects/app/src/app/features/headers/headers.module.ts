@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { HeaderDefaultComponent } from './header-default/header-default.component';
+import { HeaderDefaultComponent } from './components';
 
 const exportedDeclarations: any[] = [
   HeaderDefaultComponent
